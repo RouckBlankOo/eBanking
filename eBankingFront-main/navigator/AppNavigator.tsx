@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { Image, View } from "react-native";
-import CardsScreen from "../screens/CardsScreen";
-import HomeScreen from "../screens/HomeScreen";
-import TrophiesScreen from "../screens/TrophiesScreen";
+import CardsScreen from "../screens/Cards/CardsScreen";
+import HomeScreen from "../screens/Dashboard/HomeScreen";
+import TrophiesScreen from "../screens/Referral/TrophiesScreen";
 
 // Define the type for the tab navigator's param list
 type TabParamList = {

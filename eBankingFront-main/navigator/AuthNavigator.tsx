@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import LoginScreen from "../screens/LoginScreen";
-import SignUpScreen from "../screens/SignUpScreen";
+import LoginScreen from "../screens/Auth/LoginScreen";
+import SignUpScreen from "../screens/Auth/SignUpScreen";
 import AppNavigator from "./AppNavigator";
 
 // Define the type for the stack navigator's param list
