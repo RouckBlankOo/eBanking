@@ -26,8 +26,8 @@ import { useUser } from "../../context/UserContext";
 import { RootStackParamList } from "../../types";
 
 // Import icon images
-const AppleIcon = require("../assets/Icons/AppleIcon.png");
-const GoogleIcon = require("../assets/Icons/GoogleIcon.png");
+const AppleIcon = require("../../assets/Icons/AppleIcon.png");
+const GoogleIcon = require("../../assets/Icons/GoogleIcon.png");
 
 const { width, height } = Dimensions.get("window");
 // Use development URL for local testing, change to API_URL_PROD for production

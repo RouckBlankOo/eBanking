@@ -109,7 +109,7 @@ const ProfileScreen = () => {
             <View style={styles.profileInfo}>
               <View style={styles.profileImageContainer}>
                 <Image
-                  source={require("../assets/Icons/DefaultProfile.png")}
+                  source={require("../../assets/Icons/DefaultProfile.png")}
                   style={styles.profileImage}
                   resizeMode="cover"
                 />
@@ -152,7 +152,7 @@ const ProfileScreen = () => {
             </View>
             <View style={styles.referenceImage}>
               <Image
-                source={require("../assets/Icons/ReferenceIcon.png")}
+                source={require("../../assets/Icons/ReferenceIcon.png")}
                 style={styles.referenceIcon}
                 resizeMode="contain"
               />
@@ -171,7 +171,7 @@ const ProfileScreen = () => {
               <View style={styles.menuLeft}>
                 <View style={styles.menuIconContainer}>
                   <Image
-                    source={require("../assets/Icons/Security.png")}
+                    source={require("../../assets/Icons/Security.png")}
                     style={styles.menuIcon}
                     resizeMode="contain"
                   />
@@ -198,7 +198,7 @@ const ProfileScreen = () => {
               <View style={styles.menuLeft}>
                 <View style={styles.menuIconContainer}>
                   <Image
-                    source={require("../assets/Icons/Settings.png")}
+                    source={require("../../assets/Icons/Settings.png")}
                     style={styles.menuIcon}
                     resizeMode="contain"
                   />
@@ -219,7 +219,7 @@ const ProfileScreen = () => {
               <View style={styles.menuLeft}>
                 <View style={styles.menuIconContainer}>
                   <Image
-                    source={require("../assets/Icons/Help.png")}
+                    source={require("../../assets/Icons/Help.png")}
                     style={styles.menuIcon}
                     resizeMode="contain"
                   />
@@ -240,7 +240,7 @@ const ProfileScreen = () => {
               <View style={styles.menuLeft}>
                 <View style={styles.menuIconContainer}>
                   <Image
-                    source={require("../assets/Icons/More.png")}
+                    source={require("../../assets/Icons/More.png")}
                     style={styles.menuIcon}
                     resizeMode="contain"
                   />

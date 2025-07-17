@@ -3,12 +3,12 @@ import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { OnboardingBackground } from "../components/UniversalBackground";
+import { OnboardingBackground } from "../../components/UniversalBackground";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../types";
-import Text from "../components/Text";
-import { SuccessIcon } from "../components/LottieIcon";
-import { useAlert } from "../context/AlertContext";
+import { RootStackParamList } from "../../types";
+import Text from "../../components/Text";
+import { SuccessIcon } from "../../components/LottieIcon";
+import { useAlert } from "../../context/AlertContext";
 
 export default function CreateCardScreen() {
   const insets = useSafeAreaInsets();

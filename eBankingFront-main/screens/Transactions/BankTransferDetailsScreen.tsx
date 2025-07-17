@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput,
-  ScrollView,
-  Image,
-  Modal,
-} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { OnboardingBackground } from "../../components/UniversalBackground";
-import Text from "../../components/Text";
 import {
   NavigationProp,
   useNavigation,
   useRoute,
 } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
-import { RootStackParamList } from "../../types";
-import { useAlert } from "../../context/AlertContext";
+import React, { useState } from "react";
+import {
+  Image,
+  Modal,
+  ScrollView,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Text from "../../components/Text";
+import { OnboardingBackground } from "../../components/UniversalBackground";
 import UniversalList, { ListItem } from "../../components/UniversalList";
+import { useAlert } from "../../context/AlertContext";
+import { RootStackParamList } from "../../types";
 
 export default function BankTransferDetailsScreen() {
   const insets = useSafeAreaInsets();
@@ -178,7 +178,7 @@ export default function BankTransferDetailsScreen() {
           >
             <View style={styles.addPhotoButton}>
               <Image
-                source={require("../assets/Icons/Camera.png")}
+                source={require("../../assets/Icons/Camera.png")}
                 style={styles.addPhotoIcon}
               />
             </View>

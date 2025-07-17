@@ -1,21 +1,21 @@
-import React from "react";
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  Alert,
-} from "react-native";
-import Text from "../../components/Text";
 import { Ionicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { OnboardingBackground } from "../../components/UniversalBackground";
 import {
   NavigationProp,
   useNavigation,
   useRoute,
 } from "@react-navigation/native";
+import React from "react";
+import {
+  Alert,
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Text from "../../components/Text";
+import { OnboardingBackground } from "../../components/UniversalBackground";
 import { RootStackParamList } from "../../types";
 
 interface DepositMethod {
@@ -115,10 +115,10 @@ export default function SelectMethodScreen() {
           <Image
             source={
               method.buttonIcon === "On-chain.png"
-                ? require("../assets/Icons/On-chain.png")
+                ? require("../../assets/Icons/On-chain.png")
                 : method.buttonIcon === "BinanceApp.png"
-                ? require("../assets/Icons/BinanceApp.png")
-                : require("../assets/Icons/Bank.png")
+                ? require("../../assets/Icons/BinanceApp.png")
+                : require("../../assets/Icons/Bank.png")
             }
             style={styles.buttonIcon}
           />
@@ -154,7 +154,7 @@ export default function SelectMethodScreen() {
               />
             ) : (
               <Image
-                source={require("../assets/Icons/USDC.png")}
+                source={require("../../assets/Icons/USDC.png")}
                 style={styles.currencyIcon}
                 resizeMode="contain"
               />

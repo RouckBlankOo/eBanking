@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import React, { useCallback, useMemo, useState } from "react";
 import {
+  Animated,
   Dimensions,
   FlatList,
   Image,
@@ -13,7 +14,6 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Animated,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import MoreOptionsModal, {
@@ -470,14 +470,14 @@ function CardsScreen() {
           {item.isFrozen && (
             <View style={styles.freezeOverlay}>
               <Image
-                source={require("../assets/Icons/Freezing.png")}
+                source={require("../../assets/Icons/Freezing.png")}
                 style={styles.freezeOverlayImage}
                 resizeMode="cover"
               />
               {/* Centered freeze icon on top */}
               <View style={styles.freezeIconContainer}>
                 <Image
-                  source={require("../assets/Icons/Freeze.png")}
+                  source={require("../../assets/Icons/Freeze.png")}
                   style={styles.freezeIcon}
                   resizeMode="contain"
                 />
@@ -607,7 +607,7 @@ function CardsScreen() {
               style={styles.actionIconContainer}
             >
               <Image
-                source={require("../assets/Icons/Freeze.png")}
+                source={require("../../assets/Icons/Freeze.png")}
                 style={styles.actionIcon}
                 resizeMode="contain"
               />
@@ -636,7 +636,7 @@ function CardsScreen() {
               style={styles.actionIconContainer}
             >
               <Image
-                source={require("../assets/Icons/Info.png")}
+                source={require("../../assets/Icons/Info.png")}
                 style={styles.actionIcon}
                 resizeMode="contain"
               />
@@ -660,7 +660,7 @@ function CardsScreen() {
               style={styles.actionIconContainer}
             >
               <Image
-                source={require("../assets/Icons/Limit.png")}
+                source={require("../../assets/Icons/Limit.png")}
                 style={styles.actionIcon}
                 resizeMode="contain"
               />
@@ -677,7 +677,7 @@ function CardsScreen() {
               style={styles.actionIconContainer}
             >
               <Image
-                source={require("../assets/Icons/More.png")}
+                source={require("../../assets/Icons/More.png")}
                 style={styles.actionIcon}
                 resizeMode="contain"
               />

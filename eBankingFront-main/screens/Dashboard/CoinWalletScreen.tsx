@@ -1,21 +1,21 @@
+import { SectionContainer } from "@/components/SectionContainer";
 import { ThemedText } from "@/components/ThemedComponents";
 import { BankingBackground } from "@/components/UniversalBackground";
-import { SectionContainer } from "@/components/SectionContainer";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
-  StyleSheet,
-  View,
-  Image,
-  TouchableOpacity,
-  ScrollView,
   FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../../types";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { Ionicons } from "@expo/vector-icons";
-import { StatusBar } from "expo-status-bar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { RootStackParamList } from "../../types";
 
 type CoinWalletScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -44,7 +44,7 @@ const CoinWalletScreen = () => {
       id: "1",
       symbol: "BTC",
       name: "Bitcoin",
-      icon: require("../assets/Icons/Binances.png"),
+      icon: require("../../assets/Icons/Binances.png"),
       balance: "114.71385438",
       usdValue: "114.7",
     },
@@ -52,7 +52,7 @@ const CoinWalletScreen = () => {
       id: "2",
       symbol: "ETH",
       name: "Ethereum",
-      icon: require("../assets/Icons/ETH.png"),
+      icon: require("../../assets/Icons/ETH.png"),
       balance: "114.71385438",
       usdValue: "114.7",
     },
@@ -60,7 +60,7 @@ const CoinWalletScreen = () => {
       id: "3",
       symbol: "USDT",
       name: "USDT",
-      icon: require("../assets/Icons/USDT.png"),
+      icon: require("../../assets/Icons/USDT.png"),
       balance: "114.71385438",
       usdValue: "114.7",
     },
@@ -68,7 +68,7 @@ const CoinWalletScreen = () => {
       id: "4",
       symbol: "USDC",
       name: "USDC",
-      icon: require("../assets/Icons/USDC.png"),
+      icon: require("../../assets/Icons/USDC.png"),
       balance: "114.71385438",
       usdValue: "114.7",
     },
@@ -76,7 +76,7 @@ const CoinWalletScreen = () => {
       id: "5",
       symbol: "SOL",
       name: "Solana",
-      icon: require("../assets/Icons/SOL.png"),
+      icon: require("../../assets/Icons/SOL.png"),
       balance: "114.71385438",
       usdValue: "114.7",
     },

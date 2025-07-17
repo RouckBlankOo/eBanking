@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
+import React, { useState } from "react";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { OnboardingBackground } from "../../components/UniversalBackground";
 import Text from "../../components/Text";
+import { OnboardingBackground } from "../../components/UniversalBackground";
 import { RootStackParamList } from "../../types";
 
 interface CurrencyOption {
@@ -21,14 +21,14 @@ const CURRENCIES: CurrencyOption[] = [
     id: "usdc",
     name: "USDC",
     symbol: "USDC",
-    icon: require("../assets/Icons/USDC.png"),
+    icon: require("../../assets/Icons/USDC.png"),
     range: "10.00-100000.00",
   },
   {
     id: "btc",
     name: "Bitcoin",
     symbol: "BTC",
-    icon: require("../assets/Icons/ETH.png"), // Using ETH icon as placeholder for BTC
+    icon: require("../../assets/Icons/ETH.png"), // Using ETH icon as placeholder for BTC
     range: "10.00-100000.00",
   },
 ];

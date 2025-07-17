@@ -1,15 +1,16 @@
-import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { OnboardingBackground } from "../../components/UniversalBackground";
-import NumberPad from "../../components/NumberPad";
-import Text from "../../components/Text";
 import {
   NavigationProp,
   useNavigation,
   useRoute,
 } from "@react-navigation/native";
+import React, { useState } from "react";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import NumberPad from "../../components/NumberPad";
+import Text from "../../components/Text";
+import { OnboardingBackground } from "../../components/UniversalBackground";
 import { RootStackParamList } from "../../types";
 
 export default function BankTransferScreen() {
@@ -171,17 +172,26 @@ export default function BankTransferScreen() {
         <View style={{ flex: 1 }} />
 
         {/* Top-Up Now Button */}
-        <TouchableOpacity
-          style={styles.topUpButton}
-          onPress={handleTopUpNow}
-          activeOpacity={0.8}
+        <LinearGradient
+          colors={["#3B82F6", "#1D4ED8", "#1E40AF"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.depositButton}
         >
-          <Image
-            source={require("../assets/Icons/Bank.png")}
-            style={styles.topUpIcon}
-          />
-          <Text style={styles.topUpText}>Top-Up Now</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.depositButtonInner}
+            onPress={handleTopUpNow}
+            activeOpacity={0.8}
+          >
+            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
+              <Image
+                source={require("../../assets/Icons/Bank.png")}
+                style={styles.topUpIcon}
+              />
+              <Text style={styles.depositButtonText}>Top-Up Now</Text>
+            </View>
+          </TouchableOpacity>
+        </LinearGradient>
 
         {/* Number Pad */}
         <NumberPad
@@ -342,15 +352,30 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontWeight: "600",
   },
-  topUpButton: {
-    flexDirection: "row",
+  depositButton: {
+    borderRadius: 16,
+    overflow: "hidden",
+    marginTop: "auto",
+    marginBottom: 20,
+    shadowColor: "#3B82F6",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    elevation: 8,
+  },
+  depositButtonInner: {
+    paddingVertical: 18,
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#3B82F6",
-    borderRadius: 15,
-    paddingVertical: 16,
-    marginBottom: 16,
-    minHeight: 56,
+  },
+  depositButtonText: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#FFFFFF",
+    letterSpacing: 0.5,
+    marginLeft: 8,
   },
   topUpIcon: {
     width: 20,

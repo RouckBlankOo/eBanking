@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { OnboardingBackground } from "../../components/UniversalBackground";
-import NumberPad from "../../components/NumberPad";
-import Text from "../../components/Text";
 import {
   NavigationProp,
   useNavigation,
   useRoute,
 } from "@react-navigation/native";
+import React, { useState } from "react";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import NumberPad from "../../components/NumberPad";
+import Text from "../../components/Text";
+import { OnboardingBackground } from "../../components/UniversalBackground";
 import { RootStackParamList } from "../../types";
 
 export default function BinancePayScreen() {
@@ -167,7 +167,7 @@ export default function BinancePayScreen() {
           activeOpacity={0.8}
         >
           <Image
-            source={require("../assets/Icons/BinanceApp.png")}
+            source={require("../../assets/Icons/BinanceApp.png")}
             style={styles.topUpIcon}
           />
           <Text style={styles.topUpText}>Top-Up Now</Text>

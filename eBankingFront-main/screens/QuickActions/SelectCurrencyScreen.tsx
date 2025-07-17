@@ -1,16 +1,16 @@
+import { Ionicons } from "@expo/vector-icons";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
-  View,
+  Image,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
-  Image,
+  View,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import Text from "../../components/Text";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Text from "../../components/Text";
 import { OnboardingBackground } from "../../components/UniversalBackground";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../types";
 
 interface Currency {
@@ -31,7 +31,7 @@ export default function SelectCurrencyScreen() {
       id: "1",
       symbol: "BTC",
       name: "Bitcoin",
-      icon: require("../assets/Icons/Binances.png"), // We'll use Binances as BTC placeholder
+      icon: require("../../assets/Icons/Binances.png"), // We'll use Binances as BTC placeholder
       value: "114.71385438",
       usdValue: "114.7USD",
     },
@@ -39,7 +39,7 @@ export default function SelectCurrencyScreen() {
       id: "2",
       symbol: "ETH",
       name: "Ethereum",
-      icon: require("../assets/Icons/ETH.png"),
+      icon: require("../../assets/Icons/ETH.png"),
       value: "114.71385438",
       usdValue: "114.7USD",
     },
@@ -47,7 +47,7 @@ export default function SelectCurrencyScreen() {
       id: "3",
       symbol: "USDT",
       name: "USDT",
-      icon: require("../assets/Icons/USDT.png"),
+      icon: require("../../assets/Icons/USDT.png"),
       value: "114.71385438",
       usdValue: "114.7USD",
     },
@@ -55,7 +55,7 @@ export default function SelectCurrencyScreen() {
       id: "4",
       symbol: "USDC",
       name: "USDC",
-      icon: require("../assets/Icons/USDC.png"),
+      icon: require("../../assets/Icons/USDC.png"),
       value: "114.71385438",
       usdValue: "114.7USD",
     },
@@ -63,7 +63,7 @@ export default function SelectCurrencyScreen() {
       id: "5",
       symbol: "SOL",
       name: "Solana",
-      icon: require("../assets/Icons/SOL.png"),
+      icon: require("../../assets/Icons/SOL.png"),
       value: "114.71385438",
       usdValue: "114.7USD",
     },
@@ -71,7 +71,7 @@ export default function SelectCurrencyScreen() {
       id: "6",
       symbol: "BTC",
       name: "Bitcoin",
-      icon: require("../assets/Icons/Binances.png"), // Using existing icon as placeholder
+      icon: require("../../assets/Icons/Binances.png"), // Using existing icon as placeholder
       value: "114.71385438",
       usdValue: "114.7USD",
     },
@@ -79,7 +79,7 @@ export default function SelectCurrencyScreen() {
       id: "7",
       symbol: "ETH",
       name: "Ethereum",
-      icon: require("../assets/Icons/ETH.png"),
+      icon: require("../../assets/Icons/ETH.png"),
       value: "114.71385438",
       usdValue: "114.7USD",
     },
@@ -87,7 +87,7 @@ export default function SelectCurrencyScreen() {
       id: "8",
       symbol: "USDT",
       name: "USDT",
-      icon: require("../assets/Icons/USDT.png"),
+      icon: require("../../assets/Icons/USDT.png"),
       value: "114.71385438",
       usdValue: "114.7USD",
     },

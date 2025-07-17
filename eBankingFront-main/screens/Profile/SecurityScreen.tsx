@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import {
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  Switch,
-  Image,
-} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
+import React, { useState } from "react";
+import {
+  Image,
+  StyleSheet,
+  Switch,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Text from "../../components/Text";
-import { useAlert } from "../../context/AlertContext";
 import { UniversalBackground } from "../../components/UniversalBackground";
+import { useAlert } from "../../context/AlertContext";
 
 const SecurityScreen: React.FC = () => {
   const navigation = useNavigation();
@@ -83,7 +83,7 @@ const SecurityScreen: React.FC = () => {
           </View>
           <View style={styles.securityLevelIcon}>
             <Image
-              source={require("../assets/Icons/SecurityLevel.png")}
+              source={require("../../assets/Icons/SecurityLevel.png")}
               style={styles.securityIcon}
               resizeMode="contain"
             />

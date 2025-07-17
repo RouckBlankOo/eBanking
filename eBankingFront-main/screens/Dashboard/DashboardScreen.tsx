@@ -3,8 +3,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import CardsScreen from "../Cards/CardsScreen";
-import CoinWalletScreen from "../CoinWalletScreen";
-import HomeScreen from "../HomeScreen";
+import CoinWalletScreen from "../Dashboard/CoinWalletScreen";
+import HomeScreen from "../Dashboard/HomeScreen";
 import ProfileScreen from "../Profile/ProfileScreen";
 
 // Define valid icon names for TypeScript

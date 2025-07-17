@@ -1,26 +1,27 @@
-import React, { useState } from "react";
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  Modal,
-} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { OnboardingBackground } from "../../components/UniversalBackground";
-import Text from "../../components/Text";
 import {
   NavigationProp,
   useNavigation,
   useRoute,
 } from "@react-navigation/native";
-import { RootStackParamList } from "../../types";
-import QRCode from "react-native-qrcode-svg";
-import UniversalList, { ListItem } from "../../components/UniversalList";
 import { BlurView } from "expo-blur";
+import { LinearGradient } from "expo-linear-gradient";
+import React, { useState } from "react";
+import {
+  Image,
+  Modal,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import QRCode from "react-native-qrcode-svg";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Text from "../../components/Text";
+import { OnboardingBackground } from "../../components/UniversalBackground";
+import UniversalList, { ListItem } from "../../components/UniversalList";
 import { useAlert } from "../../context/AlertContext";
+import { RootStackParamList } from "../../types";
 
 export default function DepositScreen() {
   const insets = useSafeAreaInsets();
@@ -175,17 +176,26 @@ export default function DepositScreen() {
           {/* Network Selection */}
           <View style={styles.section}>
             <Text style={styles.sectionLabel}>Network</Text>
-            <TouchableOpacity
+            <LinearGradient
+              colors={["rgba(59,130,246,0.15)", "rgba(59,130,246,0.08)"]}
               style={styles.networkSelector}
-              onPress={() => setShowNetworkDropdown(!showNetworkDropdown)}
             >
-              <Text style={styles.networkText}>{selectedNetwork}</Text>
-              <Ionicons
-                name={showNetworkDropdown ? "chevron-up" : "chevron-down"}
-                size={20}
-                color="#FFFFFF"
-              />
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  paddingHorizontal: 16,
+                  paddingVertical: 12,
+                }}
+                onPress={() => setShowNetworkDropdown(true)}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.networkText}>{selectedNetwork}</Text>
+                <Ionicons name="chevron-down" size={20} color="#3B82F6" />
+              </TouchableOpacity>
+            </LinearGradient>
 
             {showNetworkDropdown && (
               <Modal
@@ -381,14 +391,13 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   networkSelector: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: "#3B82F6",
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderRadius: 25,
+    borderRadius: 16,
+    overflow: "hidden",
+    marginBottom: 16,
     minHeight: 48,
+    backgroundColor: "rgba(59,130,246,0.08)",
+    borderWidth: 1,
+    borderColor: "rgba(59,130,246,0.15)",
   },
   networkText: {
     fontSize: 16,

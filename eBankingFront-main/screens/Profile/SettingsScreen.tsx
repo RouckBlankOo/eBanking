@@ -1,17 +1,17 @@
+import { Ionicons } from "@expo/vector-icons";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
+  Image,
+  ScrollView,
   StyleSheet,
+  Switch,
   TouchableOpacity,
   View,
-  ScrollView,
-  Switch,
-  Image,
 } from "react-native";
-import { UniversalBackground } from "../../components/UniversalBackground";
-import { ThemedText } from "../../components/ThemedText";
-import { Ionicons } from "@expo/vector-icons";
-import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ThemedText } from "../../components/ThemedText";
+import { UniversalBackground } from "../../components/UniversalBackground";
 import { RootStackParamList } from "../../types";
 
 const SettingsScreen: React.FC = () => {
@@ -82,7 +82,7 @@ const SettingsScreen: React.FC = () => {
         >
           <View style={styles.settingIconContainer}>
             <Image
-              source={require("../assets/Icons/Currency.png")}
+              source={require("../../assets/Icons/Currency.png")}
               style={styles.iconImage}
               resizeMode="contain"
             />
@@ -109,7 +109,7 @@ const SettingsScreen: React.FC = () => {
         >
           <View style={styles.settingIconContainer}>
             <Image
-              source={require("../assets/Icons/language.png")}
+              source={require("../../assets/Icons/language.png")}
               style={styles.iconImage}
               resizeMode="contain"
             />
@@ -129,7 +129,7 @@ const SettingsScreen: React.FC = () => {
         <View style={styles.settingItem}>
           <View style={styles.settingIconContainer}>
             <Image
-              source={require("../assets/Icons/Notification.png")}
+              source={require("../../assets/Icons/Notification.png")}
               style={styles.iconImage}
               resizeMode="contain"
             />
@@ -149,7 +149,7 @@ const SettingsScreen: React.FC = () => {
         <TouchableOpacity style={styles.settingItem} onPress={handleThemePress}>
           <View style={styles.settingIconContainer}>
             <Image
-              source={require("../assets/Icons/Theme.png")}
+              source={require("../../assets/Icons/Theme.png")}
               style={styles.iconImage}
               resizeMode="contain"
             />
@@ -172,7 +172,7 @@ const SettingsScreen: React.FC = () => {
         >
           <View style={styles.settingIconContainer}>
             <Image
-              source={require("../assets/Icons/Authorization.png")}
+              source={require("../../assets/Icons/Authorization.png")}
               style={styles.iconImage}
               resizeMode="contain"
             />
@@ -194,7 +194,7 @@ const SettingsScreen: React.FC = () => {
             style={[styles.settingIconContainer, styles.logoutIconContainer]}
           >
             <Image
-              source={require("../assets/Icons/LogOut.png")}
+              source={require("../../assets/Icons/LogOut.png")}
               style={[styles.iconImage, { tintColor: "#F87171" }]}
               resizeMode="contain"
             />

@@ -1,17 +1,17 @@
+import { Ionicons } from "@expo/vector-icons";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import {
-  View,
+  Dimensions,
+  Image,
   StyleSheet,
   TouchableOpacity,
-  Image,
-  Dimensions,
+  View,
 } from "react-native";
-import { useNavigation, NavigationProp } from "@react-navigation/native";
-import { OnboardingBackground } from "../../components/UniversalBackground";
 import Text from "../../components/Text";
+import { OnboardingBackground } from "../../components/UniversalBackground";
 import { RootStackParamList } from "../../types";
-import { Ionicons } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
 
 type CountryType = "Tunisia" | "USA" | "UK" | "UAE";
 
@@ -26,10 +26,10 @@ type AccountCreationSuccessProps = {
 };
 
 const COUNTRIES: Record<CountryType, any> = {
-  Tunisia: require("../assets/images/flags/tunisia.png"),
-  USA: require("../assets/images/flags/usa.png"),
-  UK: require("../assets/images/flags/uk.png"),
-  UAE: require("../assets/images/flags/uae.png"),
+  Tunisia: require("../../assets/images/flags/tunisia.png"),
+  USA: require("../../assets/images/flags/usa.png"),
+  UK: require("../../assets/images/flags/uk.png"),
+  UAE: require("../../assets/images/flags/uae.png"),
   // Add more countries as needed
 };
 
@@ -69,7 +69,7 @@ const AccountCreationSuccessScreen: React.FC<AccountCreationSuccessProps> = ({
         <View style={styles.imageContainer}>
           {isEmailSignup ? (
             <Image
-              source={require("../assets/Icons/DefaultProfile.png")}
+              source={require("../../assets/Icons/DefaultProfile.png")}
               style={styles.profileImage}
             />
           ) : (
