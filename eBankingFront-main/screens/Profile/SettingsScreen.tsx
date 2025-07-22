@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Image,
   ScrollView,
@@ -10,16 +10,23 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import CustomAlert from "../../components/CustomAlert";
 import { ThemedText } from "../../components/ThemedText";
 import { UniversalBackground } from "../../components/UniversalBackground";
 import { RootStackParamList } from "../../types";
 
 const SettingsScreen: React.FC = () => {
+  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+  const [pendingAlerts, setPendingAlerts] = useState<
+    { type: "success" | "info"; message: string }[]
+  >([]);
+  const [currentAlert, setCurrentAlert] = useState<{
+    type: "success" | "info";
+    message: string;
+  } | null>(null);
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const insets = useSafeAreaInsets();
 
-  // States
-  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const currentCurrency = "TND";
   const currentLanguage = "English";
   const currentTheme = "Dark";
@@ -29,33 +36,26 @@ const SettingsScreen: React.FC = () => {
   };
 
   const handleCurrencyPress = () => {
-    // Navigate to currency selection screen
     console.log("Navigate to currency selection");
   };
 
   const handleLanguagePress = () => {
-    // Navigate to language selection screen
     console.log("Navigate to language selection");
   };
 
   const handleThemePress = () => {
-    // Navigate to theme selection screen
     console.log("Navigate to theme selection");
   };
 
   const handleAuthorizationsPress = () => {
-    // Navigate to authorizations screen
     console.log("Navigate to authorizations");
   };
 
   const handleLogout = () => {
-    // Logout functionality
     console.log("Logging out...");
-    // Navigate to login screen
     navigation.navigate("Login");
   };
 
-  // Register for push notifications
   const registerForPushNotificationsAsync = async () => {
     try {
       const { status: existingStatus } = await import(
@@ -72,28 +72,31 @@ const SettingsScreen: React.FC = () => {
         alert("Failed to get push token for push notification!");
         return;
       }
-      console.log(
-        "About to register for push notifications from SettingsScreen..."
-      );
+      console.log("Registering for push notifications...");
       const token = await import("expo-notifications").then((m) =>
         m.getExpoPushTokenAsync()
       );
-      console.log("Token from SettingsScreen:", token);
-      // TODO: Send token to server or store it for push notifications
+      console.log("Token:", token);
     } catch (error) {
       console.error("Error registering for push notifications:", error);
     }
   };
 
-  // Remove notification listeners (basic example)
   const disablePushNotifications = () => {
-    // Optionally remove listeners or unregister token from backend
-    console.log("Push notifications disabled from SettingsScreen.");
-    // TODO: Remove listeners or unregister token from server if needed
+    console.log("Push notifications disabled.");
   };
 
   const toggleNotifications = (value: boolean) => {
     setNotificationsEnabled(value);
+    setPendingAlerts((prev) => [
+      ...prev,
+      {
+        type: value ? "success" : "info",
+        message: value
+          ? "Notifications activated"
+          : "Notifications deactivated",
+      },
+    ]);
     if (value) {
       registerForPushNotificationsAsync();
     } else {
@@ -101,9 +104,35 @@ const SettingsScreen: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    if (currentAlert) {
+      // Display the current alert for 2000ms, then clear it
+      timer = setTimeout(() => {
+        setCurrentAlert(null);
+      }, 4000);
+    } else if (pendingAlerts.length > 0) {
+      // If no current alert and there are pending alerts, show the next one
+      const nextAlert = pendingAlerts[0];
+      setCurrentAlert(nextAlert);
+      setPendingAlerts((prev) => prev.slice(1));
+    }
+    // Cleanup timer on unmount or when currentAlert changes
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [currentAlert, pendingAlerts]);
+
   return (
     <UniversalBackground variant="banking" style={styles.container}>
-      {/* Header with back button and title */}
+      {currentAlert && (
+        <CustomAlert
+          visible={true}
+          type={currentAlert.type}
+          title={currentAlert.message}
+          buttons={[]}
+        />
+      )}
       <View style={[styles.header, { paddingTop: insets.top }]}>
         <TouchableOpacity style={styles.backButton} onPress={handleBack}>
           <Ionicons name="chevron-back" size={24} color="#FFFFFF" />
@@ -115,9 +144,7 @@ const SettingsScreen: React.FC = () => {
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
       >
-        {/* Currency Option */}
         <TouchableOpacity
           style={styles.settingItem}
           onPress={handleCurrencyPress}
@@ -144,7 +171,6 @@ const SettingsScreen: React.FC = () => {
           </View>
         </TouchableOpacity>
 
-        {/* Language Option */}
         <TouchableOpacity
           style={styles.settingItem}
           onPress={handleLanguagePress}
@@ -156,7 +182,7 @@ const SettingsScreen: React.FC = () => {
               resizeMode="contain"
             />
           </View>
-          <ThemedText style={styles.settingText}>language</ThemedText>
+          <ThemedText style={styles.settingText}>Language</ThemedText>
           <View style={styles.valueContainer}>
             <ThemedText style={styles.valueText}>{currentLanguage}</ThemedText>
             <Ionicons
@@ -167,7 +193,6 @@ const SettingsScreen: React.FC = () => {
           </View>
         </TouchableOpacity>
 
-        {/* Notifications Option */}
         <View style={styles.settingItem}>
           <View style={styles.settingIconContainer}>
             <Image
@@ -187,7 +212,6 @@ const SettingsScreen: React.FC = () => {
           />
         </View>
 
-        {/* Theme Option */}
         <TouchableOpacity style={styles.settingItem} onPress={handleThemePress}>
           <View style={styles.settingIconContainer}>
             <Image
@@ -207,7 +231,6 @@ const SettingsScreen: React.FC = () => {
           </View>
         </TouchableOpacity>
 
-        {/* Authorizations Option */}
         <TouchableOpacity
           style={styles.settingItem}
           onPress={handleAuthorizationsPress}
@@ -227,7 +250,6 @@ const SettingsScreen: React.FC = () => {
           />
         </TouchableOpacity>
 
-        {/* Logout Option */}
         <TouchableOpacity
           style={[styles.settingItem, styles.logoutItem]}
           onPress={handleLogout}
@@ -241,7 +263,7 @@ const SettingsScreen: React.FC = () => {
               resizeMode="contain"
             />
           </View>
-          <ThemedText style={styles.logoutText}>log out</ThemedText>
+          <ThemedText style={styles.logoutText}>Log Out</ThemedText>
           <Ionicons
             name="chevron-forward"
             size={20}

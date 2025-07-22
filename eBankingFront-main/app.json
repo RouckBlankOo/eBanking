@@ -10,7 +10,10 @@
     "newArchEnabled": false,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.yourcompany.ebankingfront" // Add a unique bundle ID if not present
+      "bundleIdentifier": "com.yourcompany.ebankingfront",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "notification": {
       "icon": "./assets/Icons/Notification.png",
@@ -22,7 +25,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.yourcompany.ebankingfront", // Add a unique package name if not present
+      "package": "com.yourcompany.ebankingfront",
       "edgeToEdgeEnabled": true
     },
     "web": {
@@ -42,13 +45,20 @@
         }
       ]
     ],
-    "extra": {
-      "eas": {
-        "projectId": "e1272128-34b3-4a19-afac-73647d61898a" 
-      }
-    },
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "7d4b457d-4cb4-48d9-8a97-c605b8063bb6"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/7d4b457d-4cb4-48d9-8a97-c605b8063bb6"
     }
   }
 }
