@@ -4,7 +4,6 @@ import { BankingBackground } from "@/components/UniversalBackground";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
   FlatList,
@@ -15,6 +14,7 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import AppStatusBar from "../../components/AppStatusBar";
 import { RootStackParamList } from "../../types";
 
 type CoinWalletScreenNavigationProp = StackNavigationProp<
@@ -114,9 +114,7 @@ const CoinWalletScreen = () => {
 
   return (
     <BankingBackground style={styles.container}>
-      <StatusBar style="light" translucent backgroundColor="#002657" />
-      {/* Status bar background overlay */}
-      <View style={[styles.statusBarBackground, { height: insets.top }]} />
+      <AppStatusBar />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingTop: insets.top - 10 }}

@@ -55,8 +55,50 @@ const SettingsScreen: React.FC = () => {
     navigation.navigate("Login");
   };
 
-  const toggleNotifications = () => {
-    setNotificationsEnabled((previousState) => !previousState);
+  // Register for push notifications
+  const registerForPushNotificationsAsync = async () => {
+    try {
+      const { status: existingStatus } = await import(
+        "expo-notifications"
+      ).then((m) => m.getPermissionsAsync());
+      let finalStatus = existingStatus;
+      if (existingStatus !== "granted") {
+        const { status } = await import("expo-notifications").then((m) =>
+          m.requestPermissionsAsync()
+        );
+        finalStatus = status;
+      }
+      if (finalStatus !== "granted") {
+        alert("Failed to get push token for push notification!");
+        return;
+      }
+      console.log(
+        "About to register for push notifications from SettingsScreen..."
+      );
+      const token = await import("expo-notifications").then((m) =>
+        m.getExpoPushTokenAsync()
+      );
+      console.log("Token from SettingsScreen:", token);
+      // TODO: Send token to server or store it for push notifications
+    } catch (error) {
+      console.error("Error registering for push notifications:", error);
+    }
+  };
+
+  // Remove notification listeners (basic example)
+  const disablePushNotifications = () => {
+    // Optionally remove listeners or unregister token from backend
+    console.log("Push notifications disabled from SettingsScreen.");
+    // TODO: Remove listeners or unregister token from server if needed
+  };
+
+  const toggleNotifications = (value: boolean) => {
+    setNotificationsEnabled(value);
+    if (value) {
+      registerForPushNotificationsAsync();
+    } else {
+      disablePushNotifications();
+    }
   };
 
   return (

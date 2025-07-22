@@ -131,7 +131,7 @@ const IdentityVerificationScreen = () => {
 
   return (
     <OnboardingBackground style={styles.container}>
-      <StatusBar style="light" translucent backgroundColor="#002657" />
+      <StatusBar style="light" translucent backgroundColor="#000000" />
       <View style={[styles.statusBarBackground, { height: insets.top }]} />
       <SafeAreaView style={styles.safeArea}>
         <KeyboardAvoidingView

@@ -1,12 +1,20 @@
-import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import { Ionicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { OnboardingBackground } from "@/components/UniversalBackground";
-import Text from "@/components/Text";
 import { RootStackParamList } from "@/types";
+import { Ionicons } from "@expo/vector-icons";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import * as Device from "expo-device";
+import * as Notifications from "expo-notifications";
+import { StatusBar } from "expo-status-bar";
+import React, { useEffect, useRef } from "react";
+import {
+  FlatList,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 // Define notification categories
 const NOTIFICATION_CATEGORIES = [
@@ -21,8 +29,65 @@ const NOTIFICATION_CATEGORIES = [
 ];
 
 export default function NotificationsScreen() {
+  const notificationListener = useRef<any>(null);
+  const responseListener = useRef<any>(null);
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  useEffect(() => {
+    registerForPushNotificationsAsync();
+
+    notificationListener.current =
+      Notifications.addNotificationReceivedListener((notification) => {
+        console.log("Notification received:", notification);
+        // Add logic here, e.g., update state or show an alert
+      });
+
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener((response) => {
+        console.log("Notification tapped:", response);
+        // Assuming notification data includes a categoryId
+      });
+
+    return () => {
+      Notifications.removeNotificationSubscription(
+        notificationListener.current
+      );
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+
+  async function registerForPushNotificationsAsync() {
+    if (Device.isDevice) {
+      const { status: existingStatus } =
+        await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
+      if (existingStatus !== "granted") {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+      if (finalStatus !== "granted") {
+        alert("Failed to get push token for push notification!");
+        return;
+      }
+      console.log("About to register for push notifications...");
+      const token = await Notifications.getExpoPushTokenAsync();
+      console.log("Token from app code:", token);
+      // TODO: Send token to server or store it for push notifications
+    } else {
+      alert("Must use physical device for Push Notifications");
+      return;
+    }
+
+    if (Platform.OS === "android") {
+      Notifications.setNotificationChannelAsync("default", {
+        name: "default",
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: "#FF231F7C",
+      });
+    }
+  }
 
   // Handle back button press
   const handleBack = () => {
@@ -68,7 +133,7 @@ export default function NotificationsScreen() {
 
   return (
     <OnboardingBackground style={styles.container}>
-      <StatusBar style="light" translucent backgroundColor="transparent" />
+      <StatusBar style="light" translucent backgroundColor="#000000" />
       <View style={[styles.statusBarBackground, { height: insets.top }]} />
 
       <View style={[styles.content, { paddingTop: insets.top }]}>

@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
   KeyboardAvoidingView,
@@ -11,7 +12,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CountryInput from "../../components/CountryInput";
 import CountrySelector from "../../components/CountrySelector";
@@ -73,7 +73,7 @@ const PersonalInformationScreen = () => {
 
   return (
     <OnboardingBackground style={styles.container}>
-      <StatusBar style="light" translucent backgroundColor="#002657" />
+      <StatusBar style="light" translucent backgroundColor="#000000" />
       <View style={[styles.statusBarBackground, { height: insets.top }]} />
       <SafeAreaView style={styles.safeArea}>
         <KeyboardAvoidingView

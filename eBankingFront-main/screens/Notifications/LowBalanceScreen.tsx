@@ -99,7 +99,7 @@ export default function LowBalanceScreen() {
 
   return (
     <OnboardingBackground style={styles.container}>
-      <StatusBar style="light" translucent backgroundColor="transparent" />
+      <StatusBar style="light" translucent backgroundColor="#000000" />
       <View style={[styles.statusBarBackground, { height: insets.top }]} />
 
       <View style={[styles.content, { paddingTop: insets.top }]}>

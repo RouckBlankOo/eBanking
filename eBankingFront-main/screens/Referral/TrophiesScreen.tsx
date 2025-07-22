@@ -1,20 +1,19 @@
-import React from "react";
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-} from "react-native";
-import { StatusBar } from "expo-status-bar";
-import { Ionicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
+import Text from "@/components/Text";
+import { ThemedText } from "@/components/ThemedText";
 import { OnboardingBackground } from "@/components/UniversalBackground";
 import { UserHeader } from "@/components/UserHeader";
-import { ThemedText } from "@/components/ThemedText";
-import Text from "@/components/Text";
 import { RootStackParamList } from "@/types";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function TrophiesScreen() {
   const insets = useSafeAreaInsets();
@@ -27,7 +26,7 @@ export default function TrophiesScreen() {
 
   return (
     <OnboardingBackground style={styles.container}>
-      <StatusBar style="light" translucent backgroundColor="#002657" />
+      <StatusBar style="light" translucent backgroundColor="#000000" />
       {/* Status bar background overlay */}
       <View style={[styles.statusBarBackground, { height: insets.top }]} />
 

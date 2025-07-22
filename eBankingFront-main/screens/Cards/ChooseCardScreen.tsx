@@ -1,19 +1,18 @@
-import React from "react";
-import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
-import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { OnboardingBackground } from "../../components/UniversalBackground";
 import {
   NavigationProp,
-  useNavigation,
   RouteProp,
+  useNavigation,
   useRoute,
 } from "@react-navigation/native";
-import { RootStackParamList } from "../../types";
-import { useAlert } from "../../context/AlertContext";
+import { LinearGradient } from "expo-linear-gradient";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Text from "../../components/Text";
+import { OnboardingBackground } from "../../components/UniversalBackground";
+import { RootStackParamList } from "../../types";
 
 type ChooseCardRouteProp = RouteProp<RootStackParamList, "ChooseCard">;
 
@@ -60,7 +59,7 @@ export default function ChooseCardScreen() {
 
   return (
     <OnboardingBackground style={styles.container}>
-      <StatusBar style="light" translucent backgroundColor="transparent" />
+      <StatusBar style="light" translucent backgroundColor="#000000" />
       {/* Status bar background overlay */}
       <View style={[styles.statusBarBackground, { height: insets.top }]} />
       <ScrollView

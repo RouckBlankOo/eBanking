@@ -1,12 +1,12 @@
-import React from "react";
-import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import { Ionicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { OnboardingBackground } from "@/components/UniversalBackground";
 import Text from "@/components/Text";
+import { OnboardingBackground } from "@/components/UniversalBackground";
 import { RootStackParamList } from "@/types";
+import { Ionicons } from "@expo/vector-icons";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 // Define transaction notification type
 interface TransactionNotification {
@@ -93,7 +93,7 @@ export default function TransactionsNotificationsScreen() {
 
   return (
     <OnboardingBackground style={styles.container}>
-      <StatusBar style="light" translucent backgroundColor="transparent" />
+      <StatusBar style="light" translucent backgroundColor="#000000" />
       <View style={[styles.statusBarBackground, { height: insets.top }]} />
 
       <View style={[styles.content, { paddingTop: insets.top }]}>

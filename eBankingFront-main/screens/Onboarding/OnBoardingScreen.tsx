@@ -1,5 +1,6 @@
 import { OnboardingBackground } from "@/components/UniversalBackground";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   SafeAreaView,
@@ -9,7 +10,6 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Text from "../../components/Text";
 import {
@@ -33,7 +33,7 @@ const OnBoardingScreen = () => {
   };
   return (
     <OnboardingBackground>
-      <StatusBar style="light" translucent backgroundColor="#002657" />
+      <StatusBar style="light" translucent backgroundColor="#000000" />
       <View style={[styles.statusBarBackground, { height: insets.top }]} />
       <SafeAreaView style={styles.container}>
         <View style={styles.titleContainer}>

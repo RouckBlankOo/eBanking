@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  TextInput,
-  Modal,
-} from "react-native";
-import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { OnboardingBackground } from "../../components/UniversalBackground";
 import {
   NavigationProp,
-  useNavigation,
   RouteProp,
+  useNavigation,
   useRoute,
 } from "@react-navigation/native";
-import { RootStackParamList } from "../../types";
+import { LinearGradient } from "expo-linear-gradient";
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import {
+  Modal,
+  ScrollView,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Text from "../../components/Text";
-import { useUser } from "../../context/UserContext";
+import { OnboardingBackground } from "../../components/UniversalBackground";
 import { useAlert } from "../../context/AlertContext";
+import { useUser } from "../../context/UserContext";
+import { RootStackParamList } from "../../types";
 
 type CardCustomizationRouteProp = RouteProp<
   RootStackParamList,
@@ -212,7 +212,7 @@ export default function CardCustomizationScreen() {
 
   return (
     <OnboardingBackground style={styles.container}>
-      <StatusBar style="light" translucent backgroundColor="transparent" />
+      <StatusBar style="light" translucent backgroundColor="#000000" />
       {/* Status bar background overlay */}
       <View style={[styles.statusBarBackground, { height: insets.top }]} />
       <ScrollView

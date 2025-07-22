@@ -86,7 +86,7 @@ const ProfileScreen = () => {
 
   return (
     <OnboardingBackground style={styles.container}>
-      <StatusBar style="light" translucent backgroundColor="#002657" />
+      <StatusBar style="light" translucent backgroundColor="#000000" />
       {/* Status bar background overlay */}
       <View style={[styles.statusBarBackground, { height: insets.top }]} />
       <ScrollView

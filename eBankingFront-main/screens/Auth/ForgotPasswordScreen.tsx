@@ -1,13 +1,13 @@
 ﻿import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
+  SafeAreaView,
   StyleSheet,
   TextInput,
   TouchableOpacity,
   View,
-  SafeAreaView,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Text from "../../components/Text";
 import { OnboardingBackground } from "../../components/UniversalBackground";
@@ -70,7 +70,7 @@ const ForgotPasswordScreen = () => {
 
   return (
     <OnboardingBackground style={styles.container}>
-      <StatusBar style="light" translucent backgroundColor="#002657" />
+      <StatusBar style="light" translucent backgroundColor="#000000" />
       <View style={[styles.statusBarBackground, { height: insets.top }]} />
       <SafeAreaView style={styles.safeArea}>
         <Text style={styles.title}>Forgot Password</Text>

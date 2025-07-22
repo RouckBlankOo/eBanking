@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useCallback } from "react";
-import CustomAlert, { AlertType, AlertButton } from "../components/CustomAlert";
+import React, { createContext, useCallback, useContext, useState } from "react";
+import CustomAlert, { AlertButton, AlertType } from "../components/CustomAlert";
 
 export interface AlertConfig {
   type: AlertType;
@@ -143,7 +143,7 @@ export const AlertProvider: React.FC<AlertProviderProps> = ({ children }) => {
       message?: string,
       onConfirm?: () => void,
       onCancel?: () => void,
-      confirmText: string = "Delete",
+      confirmText: string = "Logout",
       cancelText: string = "Cancel"
     ) => {
       showAlert({

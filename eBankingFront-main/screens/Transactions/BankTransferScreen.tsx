@@ -6,7 +6,6 @@ import {
 } from "@react-navigation/native";
 import React, { useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import NumberPad from "../../components/NumberPad";
 import Text from "../../components/Text";
@@ -172,26 +171,17 @@ export default function BankTransferScreen() {
         <View style={{ flex: 1 }} />
 
         {/* Top-Up Now Button */}
-        <LinearGradient
-          colors={["#3B82F6", "#1D4ED8", "#1E40AF"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={styles.depositButton}
+        <TouchableOpacity
+          style={styles.topUpButton}
+          onPress={handleTopUpNow}
+          activeOpacity={0.8}
         >
-          <TouchableOpacity
-            style={styles.depositButtonInner}
-            onPress={handleTopUpNow}
-            activeOpacity={0.8}
-          >
-            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
-              <Image
-                source={require("../../assets/Icons/Bank.png")}
-                style={styles.topUpIcon}
-              />
-              <Text style={styles.depositButtonText}>Top-Up Now</Text>
-            </View>
-          </TouchableOpacity>
-        </LinearGradient>
+          <Image
+            source={require("../../assets/Icons/Bank.png")}
+            style={styles.topUpIcon}
+          />
+          <Text style={styles.topUpText}>Top-Up Now</Text>
+        </TouchableOpacity>
 
         {/* Number Pad */}
         <NumberPad
@@ -352,30 +342,15 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontWeight: "600",
   },
-  depositButton: {
-    borderRadius: 16,
-    overflow: "hidden",
-    marginTop: "auto",
-    marginBottom: 20,
-    shadowColor: "#3B82F6",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 12,
-    elevation: 8,
-  },
-  depositButtonInner: {
-    paddingVertical: 18,
+  topUpButton: {
+    flexDirection: "row",
     alignItems: "center",
-  },
-  depositButtonText: {
-    fontSize: 18,
-    fontWeight: "700",
-    color: "#FFFFFF",
-    letterSpacing: 0.5,
-    marginLeft: 8,
+    justifyContent: "center",
+    backgroundColor: "#3B82F6",
+    borderRadius: 15,
+    paddingVertical: 16,
+    marginBottom: 16,
+    minHeight: 56,
   },
   topUpIcon: {
     width: 20,

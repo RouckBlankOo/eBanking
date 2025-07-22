@@ -167,7 +167,7 @@ export default function SendScreen() {
 
   return (
     <OnboardingBackground style={styles.container}>
-      <StatusBar style="light" translucent backgroundColor="transparent" />
+      <StatusBar style="light" translucent backgroundColor="#000000" />
       <View style={[styles.statusBarBackground, { height: insets.top }]} />
 
       <View style={[styles.mainContainer, { paddingTop: insets.top }]}>
