@@ -4,6 +4,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
+const { swaggerUi, specs } = require('./setup');
 
 const app = express();
 
@@ -73,6 +74,17 @@ connectDB();
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/user', require('./routes/user'));
 app.use('/api/verification', require('./routes/verification'));
+app.use('/api/cards', require('./routes/card'));
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(specs));
+app.use('/api/address', require('./routes/address'));
+app.use('/api/transaction', require('./routes/transaction'));
+app.use('/api/bank', require('./routes/bank'));
+app.use('/api/bankTransfer', require('./routes/bankTransfer'));
+app.use('/api/cryptoWallet', require('./routes/cryptoWallet'));
+app.use('/api/cryptoTransaction', require('./routes/cryptoTransaction'));
+app.use('/api/referral', require('./routes/referral'));
+app.use('/api/notification', require('./routes/notification'));
+app.use('/api/achievement', require('./routes/achievement'));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

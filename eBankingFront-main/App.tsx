@@ -12,47 +12,51 @@ import { AlertProvider } from "./context/AlertContext";
 import { UserProvider } from "./context/UserContext";
 import AppNavigator from "./navigator/AppNavigator";
 import AccountCreationSuccessScreen from "./screens/Auth/AccountCreationSuccessScreen";
-import AddressInformationScreen from "./screens/Onboarding/AddressInformationScreen";
-import AnnouncesScreen from "./screens/Notifications/AnnouncesScreen";
 import AuthTester from "./screens/Auth/AuthTester";
-import BankTransferDetailsScreen from "./screens/Transactions/BankTransferDetailsScreen";
-import BankTransferScreen from "./screens/Transactions/BankTransferScreen";
-import BinancePayScreen from "./screens/QuickActions/BinancePayScreen";
-import CardCustomizationScreen from "./screens/Cards/CardCustomizationScreen";
-import CardTypesScreen from "./screens/Cards/CardTypesScreen";
 import ChangeEmailScreen from "./screens/Auth/ChangeEmailScreen";
 import ChangePasswordScreen from "./screens/Auth/ChangePasswordScreen";
-import ChooseCardScreen from "./screens/Cards/ChooseCardScreen";
 import CodeConfirmationScreen from "./screens/Auth/CodeConfirmationScreen";
+import EmailVerificationScreen from "./screens/Auth/EmailVerificationScreen";
+import ForgotPasswordScreen from "./screens/Auth/ForgotPasswordScreen";
+import IdentityVerificationScreen from "./screens/Auth/IdentityVerificationScreen";
+import LoginScreen from "./screens/Auth/LoginScreen";
+import SetPasswordScreen from "./screens/Auth/SetPasswordScreen";
+import SignUpScreen from "./screens/Auth/SignUpScreen";
+import VerifyPhoneScreen from "./screens/Auth/VerifyPhoneScreen";
+import CardCustomizationScreen from "./screens/Cards/CardCustomizationScreen";
+import CardManagerScreen from "./screens/Cards/CardManagerScreen";
+import CardTypesScreen from "./screens/Cards/CardTypesScreen";
+import ChangeCardNameScreen from "./screens/Cards/ChangeCardNameScreen";
+import ChooseCardScreen from "./screens/Cards/ChooseCardScreen";
+import EditCardDesignScreen from "./screens/Cards/EditCardDesignScreen";
+import EmptyPageScreen from "./screens/Cards/EmptyPageScreen";
 import CoinWalletScreen from "./screens/Dashboard/CoinWalletScreen";
+import AnnouncesScreen from "./screens/Notifications/AnnouncesScreen";
+import LowBalanceScreen from "./screens/Notifications/LowBalanceScreen";
+import NotificationsScreen from "./screens/Notifications/NotificationsScreen";
+import SystemNotificationsScreen from "./screens/Notifications/SystemNotificationsScreen";
+import TransactionsNotificationsScreen from "./screens/Notifications/TransactionsNotificationsScreen";
+import AddressInformationScreen from "./screens/Onboarding/AddressInformationScreen";
+import OnBoardingScreen from "./screens/Onboarding/OnBoardingScreen";
+import DocumentUploadScreen from "./screens/Profile/DocumentUploadScreen";
+import PersonalInformationScreen from "./screens/Profile/PersonalInformationScreen";
+import ProfileScreen from "./screens/Profile/ProfileScreen";
+import SecurityScreen from "./screens/Profile/SecurityScreen";
+import SettingsScreen from "./screens/Profile/SettingsScreen";
+import BinancePayScreen from "./screens/QuickActions/BinancePayScreen";
 import ConvertScreen from "./screens/QuickActions/ConvertScreen";
 import DepositScreen from "./screens/QuickActions/DepositScreen";
 import DevicesScreen from "./screens/QuickActions/DevicesScreen";
-import DocumentUploadScreen from "./screens/Profile/DocumentUploadScreen";
-import EmailVerificationScreen from "./screens/Auth/EmailVerificationScreen";
-import ForgotPasswordScreen from "./screens/Auth/ForgotPasswordScreen";
 import HelpScreen from "./screens/QuickActions/HelpScreen";
-import IdentityVerificationScreen from "./screens/Auth/IdentityVerificationScreen";
-import InviteFriendsScreen from "./screens/Referral/InviteFriendsScreen";
-import LoginScreen from "./screens/Auth/LoginScreen";
-import LowBalanceScreen from "./screens/Notifications/LowBalanceScreen";
-import NotificationsScreen from "./screens/Notifications/NotificationsScreen";
-import OnBoardingScreen from "./screens/Onboarding/OnBoardingScreen";
-import PersonalInformationScreen from "./screens/Profile/PersonalInformationScreen";
-import ProfileScreen from "./screens/Profile/ProfileScreen";
 import QuickActionScreen from "./screens/QuickActions/QuickActionScreen";
-import SecurityScreen from "./screens/Profile/SecurityScreen";
 import SelectCurrencyScreen from "./screens/QuickActions/SelectCurrencyScreen";
 import SelectMethodScreen from "./screens/QuickActions/SelectMethodScreen";
-import SendScreen from "./screens/Transactions/SendScreen";
-import SetPasswordScreen from "./screens/Auth/SetPasswordScreen";
-import SettingsScreen from "./screens/Profile/SettingsScreen";
-import SignUpScreen from "./screens/Auth/SignUpScreen";
-import SystemNotificationsScreen from "./screens/Notifications/SystemNotificationsScreen";
-import TransactionsNotificationsScreen from "./screens/Notifications/TransactionsNotificationsScreen";
-import TransferAmountScreen from "./screens/Transactions/TransferAmountScreen";
-import VerifyPhoneScreen from "./screens/Auth/VerifyPhoneScreen";
 import WithdrawScreen from "./screens/QuickActions/WithdrawScreen";
+import InviteFriendsScreen from "./screens/Referral/InviteFriendsScreen";
+import BankTransferDetailsScreen from "./screens/Transactions/BankTransferDetailsScreen";
+import BankTransferScreen from "./screens/Transactions/BankTransferScreen";
+import SendScreen from "./screens/Transactions/SendScreen";
+import TransferAmountScreen from "./screens/Transactions/TransferAmountScreen";
 
 // Enable react-native-screens for better performance
 enableScreens();
@@ -420,6 +424,20 @@ export default function App() {
                   ...TransitionPresets.SlideFromRightIOS,
                   gestureEnabled: true,
                 }}
+              />
+              <Stack.Screen name="CardManager" component={CardManagerScreen} />
+              <Stack.Screen
+                name="ChangeCardName"
+                component={ChangeCardNameScreen}
+              />
+              <Stack.Screen
+                name="EditCardDesign"
+                component={EditCardDesignScreen}
+              />
+              <Stack.Screen
+                name="EmptyPageScreen"
+                component={EmptyPageScreen}
+                options={{ headerShown: true, title: "Empty Page" }}
               />
             </Stack.Navigator>
           </NavigationContainer>
