@@ -4,17 +4,26 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
-const { swaggerUi, specs } = require('./setup');
-
+const swaggerUi = require('swagger-ui-express');
+const specs = require('./swagger'); // Assuming Swagger specs are defined here
+const authRouter = require('./routes/auth');
 const app = express();
-
+const morgan = require('morgan');
+// Check for required environment variables
+const requiredEnvVars = ['MONGO_URI', 'JWT_SECRET'];
+requiredEnvVars.forEach((varName) => {
+  if (!process.env[varName]) {
+    console.error(`${varName} is not defined in the environment variables`);
+    process.exit(1);
+  }
+});
 // Security middleware
 app.use(helmet());
 
 // Rate limiting
 const limiter = rateLimit({
   windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000, // 15 minutes
-  max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100, // limit each IP to 100 requests per windowMs
+  max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100, // Limit each IP to 100 requests per windowMs
   message: {
     error: 'Too many requests from this IP, please try again later.'
   }
@@ -23,16 +32,7 @@ app.use('/api/', limiter);
 
 // CORS configuration
 app.use(cors({
-  origin: [
-    process.env.CLIENT_URL || 'http://localhost:8081',
-    'http://localhost:8081',
-    'http://192.168.100.4:8081',
-    'http://192.168.1.17:8081',
-    // Allow any local network for development
-    /^http:\/\/192\.168\.\d+\.\d+:\d+$/,
-    /^http:\/\/10\.\d+\.\d+\.\d+:\d+$/,
-    /^http:\/\/172\.(1[6-9]|2\d|3[01])\.\d+\.\d+:\d+$/
-  ],
+  origin: ['http://localhost:3000', 'https://your-frontend-domain.com'], // Replace with actual frontend domain
   credentials: true,
   optionsSuccessStatus: 200
 }));
@@ -42,40 +42,25 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Request logging middleware
-app.use((req, res, next) => {
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.path} from ${req.ip}`);
-  next();
-});
+app.use(morgan('combined'));
 
 // MongoDB connection
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(
-      process.env.NODE_ENV === 'production' 
-        ? process.env.MONGODB_URI_PROD 
-        : process.env.MONGODB_URI || 'mongodb://localhost:27017/ebanking',
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
-    );
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('Connected to MongoDB');
   } catch (error) {
-    console.error('Database connection error:', error);
-    console.log('Starting server without database connection for testing...');
-    // Don't exit, continue without database for initial testing
+    console.error('MongoDB connection error:', error.message);
+    process.exit(1); // Exit if connection fails
   }
 };
 
-// Connect to database
-connectDB();
-
-// Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/user', require('./routes/user'));
 app.use('/api/verification', require('./routes/verification'));
+app.use('/api/user', require('./routes/user'));
 app.use('/api/cards', require('./routes/card'));
-app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use('/api/address', require('./routes/address'));
 app.use('/api/transaction', require('./routes/transaction'));
 app.use('/api/bank', require('./routes/bank'));
@@ -144,15 +129,14 @@ app.use('*', (req, res) => {
 
 const PORT = process.env.PORT || 4022;
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`
-🚀 eBanking Backend Server is running!
-📍 Port: ${PORT}
-🌍 Environment: ${process.env.NODE_ENV || 'development'}
-📡 API Base URL: http://localhost:${PORT}/api
-🔗 Health Check: http://localhost:${PORT}/api/health
-🌐 Network Access: http://192.168.100.4:${PORT}/api
-  `);
-});
+// Start the server only after database connection is established
+const startServer = async () => {
+  await connectDB(); // Wait for DB connection
+  app.listen(PORT, () => {
+    console.log(`🚀 eBanking Backend Server is running on ${PORT}!`);
+  });
+};
+
+startServer();
 
 module.exports = app;

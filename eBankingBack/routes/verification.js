@@ -1,12 +1,11 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const rateLimit = require('express-rate-limit');
-const User = require('../models/User');
-const Verification = require('../models/Verification');
+const User = require('../database/models/User');
 const { generateVerificationCode } = require('../utils/generators');
 const { sendVerificationEmail } = require('../utils/email');
 const { sendSMS } = require('../utils/sms');
-const { auth } = require('../middleware/auth');
+const { auth } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 

@@ -1,129 +1,66 @@
-// User.js
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 
-const userSchema = new mongoose.Schema({
-  fullName: {
-    type: String,
-    required: [true, 'Full name is required'],
-    trim: true,
-    maxlength: [30, 'Full name cannot exceed 30 characters']
-  },
-  email: {
-    type: String,
-    required: [true, 'Email is required'],
-    unique: true,
-    lowercase: true,
-    trim: true,
-    match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email']
-  },
-  phoneNumber: {
-    type: String,
-    required: [true, 'Phone number is required'],
-    unique: true,
-    trim: true,
-    match: [/^\+?[\d\s-()]+$/, 'Please enter a valid phone number']
-  },
-  password: {
-    type: String,
-    required: [true, 'Password is required'],
-    minlength: [8, 'Password must be at least 8 characters long'],
-    select: false
-  },
-  emailVerified: {
-    type: Boolean,
-    default: false
-  },
-  phoneVerified: {
-    type: Boolean,
-    default: false
-  },
-  profileCompletionStatus: {
-    personalInformation: {
-      type: Boolean,
-      default: false
-    },
-    addressInformation: {
-      type: Boolean,
-      default: false
-    },
-    identityVerification: {
-      type: Boolean,
-      default: false
-    }
-  },
-  personalInfo: {
-    dateOfBirth: Date,
-    nationality: String,
-    occupation: String,
-    employmentStatus: {
-      type: String,
-      enum: ['employed', 'self-employed', 'unemployed', 'student', 'retired']
-    },
-    monthlyIncome: Number,
-    sourceOfIncome: String
-  },
-  addressInfo: {
-    street: String,
-    city: String,
-    state: String,
-    postalCode: String,
-    country: String,
-    residenceType: {
-      type: String,
-      enum: ['owned', 'rented', 'family', 'other']
-    }
-  },
-  identityVerification: {
-    documentType: {
-      type: String,
-      enum: ['passport', 'driver_license', 'national_id']
-    },
-    documentNumber: String,
-    documentImages: [{
-      type: String,
-    }],
-    verificationStatus: {
-      type: String,
-      enum: ['pending', 'approved', 'rejected'],
-      default: 'pending'
-    },
-    verifiedAt: Date,
-    rejectionReason: String
-  },
-  loginAttempts: {
-    type: Number,
-    default: 0
-  },
-  lockUntil: Date,
-  refreshTokens: [String],
-  isActive: {
-    type: Boolean,
-    default: true
-  },
-  isSuspended: {
-    type: Boolean,
-    default: false
-  },
-  suspensionReason: String,
-  bankingInfo: {
-    accountBalance: {
-      type: Number,
-      default: 0
-    },
-    currency: {
-      type: String,
-      default: 'USD'
-    },
-    accountType: {
-      type: String,
-      enum: ['basic', 'premium', 'vip'],
-      default: 'basic'
-    }
-  },
-  lastLogin: Date,
-  ipAddress: String,
-  userAgent: String
-}, {timestamps: true,});
+const userSchema = new mongoose.Schema(
+    {
+        username: { type: String, unique: true, trim: true },
+        phone: { type: String, required: true, unique: true, trim: true },
+        email: { type: String, unique: true, lowercase: true, trim: true },
+        password: { type: String, required: true, minlength: 6 },
 
-model.exports = mongoose.model('User', userSchema);
+        // Personal Information
+        personalInfo: {
+            firstName: { type: String, trim: true },
+            lastName: { type: String, trim: true },
+            dateOfBirth: { type: Date },
+            profilePicture: { type: String },
+            countryOfResidence: { type: String, trim: true },
+        },
+
+        // Address Information
+        address: {
+            country: { type: String, trim: true },
+            streetAddress: { type: String, trim: true },
+            addressLine2: { type: String, trim: true },
+            city: { type: String, trim: true },
+            postalCode: { type: String, trim: true },
+            state: { type: String, trim: true },
+        },
+
+        // KYC Verification
+        kycVerification: {
+            documentType: {
+                type: String,
+                enum: ['passport', 'driving_license', 'national_id_card'],
+            },
+            documentNumber: { type: String, trim: true },
+            issuingCity: { type: String, trim: true },
+            nationality: { type: String, trim: true },
+            expiryDate: { type: Date },
+
+            // Documents
+            documentPhotos: {
+                passport: { type: String },
+                front: { type: String },
+                back: { type: String },
+            },
+        },
+
+        userMeta: {
+            isEmailVerified: { type: Boolean, default: false },
+            isPhoneVerified: { type: Boolean, default: false },
+            token: { type: String, default: null },
+            otp: { type: String, default: null },
+            otpCreatedAt: { type: Date, default: null },
+        },
+        notificationPreferences: {
+            sms: { type: Boolean, default: false },
+            email: { type: Boolean, default: false },
+            push: { type: Boolean, default: false },
+        },
+    },
+    {
+        timestamps: true,
+    }
+);
+
+module.exports = mongoose.model('User', userSchema);
